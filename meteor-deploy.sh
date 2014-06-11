@@ -112,6 +112,7 @@ function run() {
 
     echo "Starting forever";
     forever restart bundle/main.js || forever start bundle/main.js;
+    forever logs
 
     echo "Application is running on $ROOT_URL"
 }
