@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-set -u
+#set -u
 set -o pipefail  # so curl failure triggers the "set -e"
 
 CWD=$(pwd)
@@ -105,7 +105,7 @@ function run() {
 
 }
 
-if [[ -z $1 ]]; then
+if [[ $# == 0 ]]; then
     echo "Usage: $0 [server|config|run]"
     exit
 elif [[ $1 == "server" ]]; then
@@ -113,5 +113,5 @@ elif [[ $1 == "server" ]]; then
 elif [[ $1 == "config" ]]; then
     config
 elif [[ $1 == "run" ]]; then
-    run
+    run $2
 fi
