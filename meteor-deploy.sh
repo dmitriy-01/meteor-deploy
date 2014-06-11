@@ -16,18 +16,20 @@ function server() {
 }
 
 function config() {
-    echo -n "Enter your APP_NAME [eg. example]: "
+    echo -n "Enter your APP_NAME [eg. myapp]: "
     read APP_NAME
-    echo -n "Enter your ROOT_URL [eg. http://example.com]: "
+    echo -n "Enter your ROOT_URL [eg. http://myapp.com]: "
     read ROOT_URL
     echo -n "Enter your PORT [eg. 3000]: "
     read PORT
-    echo -n "Enter your GIT_URL [eg. git@bitbucket.org:example/example.git]: "
+    echo -n "Enter your GIT_URL [eg. git@bitbucket.org:myapp/myapp.git]: "
     read GIT_URL
     echo -n "Enter your GIT_BRANCH [eg. master]: "
     read GIT_BRANCH
-    echo -n "Enter your MAIL_URL [eg. smtp://postmaster@example.com:password@smtp.mailgun.org:465]: "
+    echo -n "Enter your MAIL_URL [eg. smtp://postmaster@myapp.com:password@smtp.mailgun.org:465]: "
     read MAIL_URL
+    echo -n "Enter your MONGO_URL [eg. mongodb://localhost:27017/myapp]: "
+    read MONGO_URL
     echo
     FORCE_CLEAN=true
 
@@ -38,6 +40,7 @@ PORT="${PORT}"
 GIT_URL="${GIT_URL}"
 GIT_BRANCH="${GIT_BRANCH}"
 MAIL_URL="${MAIL_URL}"
+MONGO_URL="${MONGO_URL}"
 FORCE_CLEAN=${FORCE_CLEAN}
 EOL
 
