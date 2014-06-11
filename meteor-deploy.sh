@@ -11,8 +11,6 @@
 #fi
 
 PREFIX="/usr/local"
-CURRENT_FOLDER=${PWD##*/}
-echo $CURRENT_FOLDER
 
 set -e
 
@@ -53,9 +51,9 @@ echo $PLATFORM
 trap "echo Installation failed." EXIT
 
 SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
+LAUNCHER="~/meteor-deploy"
 
-curl -o $CURRENT_FOLDER "$SCRIPT_URL"
-LAUNCHER="./meteor-deploy.sh"
+curl -o $LAUNCHER $SCRIPT_URL
 
 if cp "$LAUNCHER" "$PREFIX/bin/meteor-deploy" >/dev/null 2>&1; then
   echo "Writing a launcher script to $PREFIX/bin/meteor-deploy for your convenience."
