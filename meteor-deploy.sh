@@ -17,13 +17,12 @@ set -u
 
 # Let's display everything on stderr.
 exec 1>&2
-
-if [[ "$1" == "config" ]]; then
-    config
-elif [[ "$1" == "run" ]]; then
-    run
-else
+if [[ $# == 0 ]]; then
     install
+elif [[ $# == 0 || "$1" == "config" ]]; then
+    config
+elif [[ $# == 0 || "$1" == "run" ]]; then
+    run
 fi
 
 ### Functions
