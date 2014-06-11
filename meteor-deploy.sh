@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# curl https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh | /bin/sh
+# curl -O https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh | /bin/sh
 
 #if [ -x /usr/local/bin/meteor-deploy ]; then
 #  exec /usr/local/bin/meteor-deploy update
@@ -50,10 +50,7 @@ echo $PLATFORM
 
 trap "echo Installation failed." EXIT
 
-SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
-LAUNCHER="/tmp/meteor-deploy"
-
-curl -o $LAUNCHER $SCRIPT_URL
+LAUNCHER="./meteor-deploy.sh"
 
 if cp "$LAUNCHER" "$PREFIX/bin/meteor-deploy" >/dev/null 2>&1; then
   echo "Writing a launcher script to $PREFIX/bin/meteor-deploy for your convenience."
