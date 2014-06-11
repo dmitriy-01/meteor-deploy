@@ -76,8 +76,12 @@ function run() {
             git pull;
             if [ "$FORCE_CLEAN" == "true" ]; then
                     echo "Killing forever and node";
-                    killall node;
-                    killall nodejs;
+                    if ps aux | grep "[n]ode" > /dev/null; then
+                        killall node;
+                    fi
+                    if ps aux | grep "[n]odejs" > /dev/null; then
+                        killall nodejs;
+                    fi
 
                     echo "Cleaning bundle files";
                     rm -rf ../bundle > /dev/null 2>&1;
