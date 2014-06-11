@@ -51,7 +51,7 @@ echo $PLATFORM
 trap "echo Installation failed." EXIT
 
 SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
-LAUNCHER="~/meteor-deploy"
+LAUNCHER="/tmp/meteor-deploy"
 
 curl -o $LAUNCHER $SCRIPT_URL
 
