@@ -75,7 +75,7 @@ elif type sudo >/dev/null 2>&1; then
   fi
 fi
 
-rm LAUNCHER
+rm $LAUNCHER
 
 yum install -y nodejs --enablerepo=epel
 node --version
