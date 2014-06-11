@@ -5,7 +5,7 @@ set -o pipefail  # so curl failure triggers the "set -e"
 
 CWD=$(pwd)
 
-function server{
+function server() {
     yum install -y nodejs --enablerepo=epel
     node --version
     yum install -y npm --enablerepo=epel
@@ -15,7 +15,7 @@ function server{
     npm install -g forever
 }
 
-function config {
+function config() {
     echo -n "Enter your APP_NAME [eg. example]: "
     read APP_NAME
     echo -n "Enter your ROOT_URL [eg. http://example.com]: "
@@ -43,7 +43,7 @@ EOL
 
 }
 
-function run {
+function run() {
 
     if [[ ! -f ./meteor-deploy.config ]]; then
         config
