@@ -4,8 +4,6 @@ set -u
 set -o pipefail  # so curl failure triggers the "set -e"
 
 CWD=$(pwd)
-echo $CWD
-exit
 
 function server{
     yum install -y nodejs --enablerepo=epel
