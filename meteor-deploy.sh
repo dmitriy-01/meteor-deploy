@@ -110,7 +110,7 @@ function run() {
     echo "Starting forever";
     forever start bundle/main.js;
 
-    echo "Application is running on $ROOT_URL:$PORT"
+    echo "Application is running on $ROOT_URL"
 }
 
 if [[ $# == 0 ]]; then
