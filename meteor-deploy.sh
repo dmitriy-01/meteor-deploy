@@ -105,10 +105,10 @@ function run() {
         export MAIL_URL=$MAIL_URL;
     fi;
     export PORT=$PORT;
-    #printenv
+    printenv
 
     echo "Starting forever";
-    forever start bundle/main.js;
+    forever restart bundle/main.js || forever start bundle/main.js;
 
     echo "Application is running on $ROOT_URL"
 }
