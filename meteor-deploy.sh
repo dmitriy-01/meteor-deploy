@@ -75,8 +75,10 @@ function run() {
         then
             git pull;
             if [ "$FORCE_CLEAN" == "true" ]; then
-                    #echo "Killing forever and node";
-                    #killall nodejs;
+                    echo "Killing forever and node";
+                    killall node;
+                    killall nodejs;
+
                     echo "Cleaning bundle files";
                     rm -rf ../bundle > /dev/null 2>&1;
                     rm -rf ../bundle.tgz > /dev/null 2>&1;
@@ -86,6 +88,7 @@ function run() {
             meteor bundle ../bundle.tgz;
             cd ..;
             tar -zxvf bundle.tgz;
+            rm -f bundle.tgz;
         else
             cd ..;
     fi;
@@ -101,8 +104,9 @@ function run() {
     #printenv
 
     echo "Starting forever";
-    forever restart bundle/main.js || forever start bundle/main.js;
+    forever start bundle/main.js;
 
+    echo "Application is running on $ROOT_URL:$PORT"
 }
 
 if [[ $# == 0 ]]; then
