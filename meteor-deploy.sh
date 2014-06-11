@@ -17,14 +17,6 @@ set -e
 # Let's display everything on stderr.
 exec 1>&2
 
-if [[ -z $1 ]]; then
-    install
-elif [[ $1 == "config" ]]; then
-    config
-elif [[ $1 == "run" ]]; then
-    run
-fi
-
 ### Functions
 
 function install {
@@ -199,5 +191,13 @@ echo "Starting forever";
 forever restart bundle/main.js || forever start bundle/main.js;
 
 }
+
+if [[ -z $1 ]]; then
+    install
+elif [[ $1 == "config" ]]; then
+    config
+elif [[ $1 == "run" ]]; then
+    run
+fi
 
 trap - EXIT
