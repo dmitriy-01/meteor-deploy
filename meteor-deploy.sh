@@ -13,7 +13,6 @@
 PREFIX="/usr/local"
 
 set -e
-set -u
 
 # Let's display everything on stderr.
 exec 1>&2
