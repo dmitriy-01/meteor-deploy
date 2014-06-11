@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# curl -O https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy-install.sh | /bin/sh
+# curl https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy-install.sh | /bin/sh
 
 #if [ -x /usr/local/bin/meteor-deploy ]; then
 #  exec /usr/local/bin/meteor-deploy update
@@ -22,6 +22,7 @@ function usage {
 
 To get started fast:
 
+  $ meteor-deploy server
   $ mkdir ~/my_cool_app
   $ cd ~/my_cool_app
   $ meteor-deploy config
@@ -85,5 +86,8 @@ elif type sudo >/dev/null 2>&1; then
   fi
 fi
 
+chmod +x "$PREFIX/bin/meteor-deploy"
+
+rm -f $LAUNCHER
 
 trap - EXIT
