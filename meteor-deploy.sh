@@ -52,7 +52,7 @@ trap "echo Installation failed." EXIT
 
 SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
 
-curl --progress-bar --fail "$SCRIPT_URL"
+curl -O "$SCRIPT_URL"
 LAUNCHER="./meteor-deploy.sh"
 
 if cp "$LAUNCHER" "$PREFIX/bin/meteor-deploy" >/dev/null 2>&1; then
