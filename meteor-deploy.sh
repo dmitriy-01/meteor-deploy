@@ -6,16 +6,58 @@ set -o pipefail  # so curl failure triggers the "set -e"
 CWD=$(pwd)
 
 function server() {
-    yum install -y nodejs --enablerepo=epel
-    node --version
-    yum install -y npm --enablerepo=epel
+    YUM_CMD=$(which yum)
+    APT_GET_CMD=$(which apt-get)
 
-    curl install.meteor.com | /bin/sh
-    npm install -g meteorite
-    npm install -g forever
+     if [[ ! -z $YUM_CMD ]]; then
+        sudo rpm --import https://fedoraproject.org/static/0608B895.txt
+        sudo rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+        cat >/etc/yum.repos.d/mongodb.repo <<EOL
+[mongodb]
+name=MongoDB Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0
+enabled=1
+EOL
+
+        sudo yum install -y nodejs --enablerepo=epel
+        sudo yum install -y npm --enablerepo=epel
+
+        sudo npm install -g meteorite
+        sudo npm install -g forever
+
+        sudo yum install mongodb-org
+        sudo service mongod start
+        sudo chkconfig mongod on
+
+
+     elif [[ ! -z $APT_GET_CMD ]]; then
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+        echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+        sudo apt-get update
+
+        sudo apt-get install nodejs
+        sudo apt-get install nodejs-legacy
+        sudo apt-get install npm
+
+        sudo apt-get install -g meteorite
+        sudo apt-get install -g forever
+
+        sudo apt-get install mongodb-org
+        sudo /etc/init.d/mongod start
+
+     else
+        echo "Error: your OS doesn't support 'yum' or 'apt-get'"
+        exit 1;
+     fi
+
+     curl install.meteor.com | /bin/sh
 }
 
 function config() {
+    read -e -p "Enter your APP_NAME:" -i "myapp" APP_NAME
+
+
     echo -n "Enter your APP_NAME [eg. myapp]: "
     read APP_NAME
     echo -n "Enter your ROOT_URL [eg. http://myapp.com]: "
