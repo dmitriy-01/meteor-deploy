@@ -30,7 +30,7 @@ EOL
         sudo npm install -g meteorite
         sudo npm install -g forever
 
-        sudo yum install mongodb-org
+        sudo yum install -y mongodb-org
         sudo service mongod start
         sudo chkconfig mongod on
 
@@ -164,6 +164,11 @@ function run() {
     echo "Application is running on $ROOT_URL"
 }
 
+function stop() {
+    echo "Stopping forever :)";
+    forever stop bundle/main.js;
+}
+
 if [[ $# == 0 ]]; then
     echo "Usage: $0 [server|config|run]"
     exit
@@ -173,6 +178,8 @@ elif [[ $1 == "config" ]]; then
     config
 elif [[ $1 == "run" ]]; then
     run $2
+elif [[ $1 == "stop" ]]; then
+    stop
 elif [[ $1 == "update" ]]; then
     curl -H "Cache-Control: no-cache, max-age=0" https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy-install.sh | /bin/sh
 fi
