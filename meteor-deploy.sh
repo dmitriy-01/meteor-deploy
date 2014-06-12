@@ -166,5 +166,5 @@ elif [[ $1 == "config" ]]; then
 elif [[ $1 == "run" ]]; then
     run $2
 elif [[ $1 == "update" ]]; then
-    curl https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy-install.sh | /bin/sh
+    curl -H "Cache-Control: no-cache, max-age=0" https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy-install.sh | /bin/sh
 fi
