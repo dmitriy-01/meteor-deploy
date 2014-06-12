@@ -64,7 +64,7 @@ trap "echo Installation failed." EXIT
 SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
 LAUNCHER="/tmp/meteor-deploy.sh"
 
-curl --progress-bar --fail -o -H "Cache-Control: no-cache, max-age=0" "$LAUNCHER" "$SCRIPT_URL"
+curl -H "Cache-Control: no-cache, max-age=0" --progress-bar --fail -o "$LAUNCHER" "$SCRIPT_URL"
 
 if cp "$LAUNCHER" "$PREFIX/bin/meteor-deploy" >/dev/null 2>&1; then
   echo "Writing a launcher script to $PREFIX/bin/meteor-deploy for your convenience."
