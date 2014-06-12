@@ -7,8 +7,15 @@ CWD=$(pwd)
 
 function server() {
      if [[ -n "$(command -v yum)" ]]; then
-        sudo rpm --import https://fedoraproject.org/static/0608B895.txt
-        sudo rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm || true
+        cat <<EOM >/etc/yum.repos.d/epel-bootstrap.repo
+[epel]
+name=Bootstrap EPEL
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-\$releasever&arch=\$basearch
+failovermethod=priority
+enabled=0
+gpgcheck=0
+EOM
+
         cat >/etc/yum.repos.d/mongodb.repo <<EOL
 [mongodb]
 name=MongoDB Repository
@@ -27,6 +34,7 @@ EOL
         sudo service mongod start
         sudo chkconfig mongod on
 
+        rm -f /etc/yum.repos.d/epel-bootstrap.repo
 
      elif [[ -n "$(command -v apt-get)" ]]; then
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
