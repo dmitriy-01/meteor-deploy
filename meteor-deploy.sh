@@ -6,10 +6,7 @@ set -o pipefail  # so curl failure triggers the "set -e"
 CWD=$(pwd)
 
 function server() {
-    YUM_CMD=$(which yum)
-    APT_GET_CMD=$(which apt-get)
-
-     if [[ ! -z $YUM_CMD ]]; then
+     if [[ -n "$(command -v yum)" ]]; then
         sudo rpm --import https://fedoraproject.org/static/0608B895.txt
         sudo rpm -Uvh http://download-i2.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
         cat >/etc/yum.repos.d/mongodb.repo <<EOL
@@ -31,7 +28,7 @@ EOL
         sudo chkconfig mongod on
 
 
-     elif [[ ! -z $APT_GET_CMD ]]; then
+     elif [[ -n "$(command -v apt-get)" ]]; then
         sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
         echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
         sudo apt-get update
