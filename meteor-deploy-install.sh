@@ -58,7 +58,7 @@ fi
 PLATFORM="${UNAME}_${ARCH}"
 echo $PLATFORM
 
-trap "echo Installation failed." EXIT
+trap "echo Installation failed" EXIT
 
 
 SCRIPT_URL="https://raw.githubusercontent.com/websquared/meteor-deploy/master/meteor-deploy.sh"
