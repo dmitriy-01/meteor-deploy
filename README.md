@@ -12,4 +12,4 @@ $ meteor-deploy config
 $ meteor-deploy run
 ```
 
-Read more: [Meteor-Deploy: Deploying Meteor JS to Production Server (RedHat, CentOS, Debian, Ubuntu))](http://websquared.ca/deploying-meteor-js-to-production-server-redhat-centos-debian-ubuntu/)
+Read more: [Meteor-Deploy: Deploying Meteor JS to Production Server (RedHat, CentOS, Debian, Ubuntu)](http://websquared.ca/deploying-meteor-js-to-production-server-redhat-centos-debian-ubuntu/)
