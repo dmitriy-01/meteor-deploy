@@ -61,23 +61,13 @@ EOL
 
 function config() {
     read -e -p "Enter your APP_NAME:" -i "myapp" APP_NAME
+    read -e -p "Enter your ROOT_URL:" -i "http://${APP_NAME}.com" ROOT_URL
+    read -e -p "Enter your PORT:" -i "3000" PORT
+    read -e -p "Enter your GIT_URL:" -i "git@bitbucket.org:${APP_NAME}/${APP_NAME}.git" GIT_URL
+    read -e -p "Enter your GIT_BRANCH:" -i "master" GIT_BRANCH
+    read -e -p "Enter your MAIL_URL:" -i "smtp://postmaster@${ROOT_URL}:password@smtp.mailgun.org:465" MAIL_URL
+    read -e -p "Enter your MONGO_URL:" -i "mongodb://localhost:27017/${APP_NAME}" MONGO_URL
 
-
-    echo -n "Enter your APP_NAME [eg. myapp]: "
-    read APP_NAME
-    echo -n "Enter your ROOT_URL [eg. http://myapp.com]: "
-    read ROOT_URL
-    echo -n "Enter your PORT [eg. 3000]: "
-    read PORT
-    echo -n "Enter your GIT_URL [eg. git@bitbucket.org:myapp/myapp.git]: "
-    read GIT_URL
-    echo -n "Enter your GIT_BRANCH [eg. master]: "
-    read GIT_BRANCH
-    echo -n "Enter your MAIL_URL [eg. smtp://postmaster@myapp.com:password@smtp.mailgun.org:465]: "
-    read MAIL_URL
-    echo -n "Enter your MONGO_URL [eg. mongodb://localhost:27017/myapp]: "
-    read MONGO_URL
-    echo
     FORCE_CLEAN=true
 
     cat >meteor-deploy.config <<EOL
